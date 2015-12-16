@@ -1,2 +1,9 @@
-# roman-numeral-converter-go
-Building a simple roman numeral converter in Go
+# Roman Numeral
+
+First attempt at programming in Go
+
+Building a simple roman numeral converter.
+
+Usage
+
+go run convert {roman numerals}
