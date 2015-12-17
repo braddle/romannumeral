@@ -27,7 +27,6 @@ func NewRomanNumeral(numeral string) (RomanNumeral, error) {
 	}
 
 	rn := RomanNumeral{numeral}
-	// rn.numeral = numeral
 
 	return rn, nil
 }
