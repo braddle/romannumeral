@@ -1,4 +1,4 @@
-package main
+package romannumeral
 
 import (
 	"fmt"
@@ -44,12 +44,16 @@ func TestNewRomanNumeralDoesNotAcceptInvalidCharacters(t *testing.T) {
 	}
 }
 
-func TestReverseReversesTheOrderOfTheASlice(t *testing.T) {
-	givenSlice := []string{"abc", "def", "ghi"}
-	expectedSlice := []string{"ghi", "def", "abc"}
-	reversedSlice := reverse(givenSlice)
+func TestNewRomanNumeralStripsSpaces(t *testing.T) {
+	rn, err := NewRomanNumeral(" V I I ")
 
-	assert.Equal(t, expectedSlice, reversedSlice)
+	if err != nil {
+		t.Fatal(fmt.Sprintf("NewRomanNumeral returned an error: %v", err))
+	}
+
+	if rn.String() != "VII" {
+		t.Fatal(fmt.Sprintf("NewRomanNumeral return with unxepected numeral value expected: VII actual: %v", rn))
+	}
 }
 
 func TestGetNumeralValueForIis1(t *testing.T) {
@@ -80,20 +84,24 @@ func TestGetNumeralValueForMis1000(t *testing.T) {
 	assert.Equal(t, 1000, getNumeralValue("M"))
 }
 
+func TestGetNumeralValueForInvalidNumeralIs0(t *testing.T) {
+	assert.Equal(t, 0, getNumeralValue("A"))
+}
+
 func TestConvertToIntegerXVis15(t *testing.T) {
 	rn, _ := NewRomanNumeral("XV")
 
-	assert.Equal(t, 15, convertToInteger(rn))
+	assert.Equal(t, 15, rn.ToInt())
 }
 
 func TestConvertToIntegerXIVis14(t *testing.T) {
 	rn, _ := NewRomanNumeral("XIV")
 
-	assert.Equal(t, 14, convertToInteger(rn))
+	assert.Equal(t, 14, rn.ToInt())
 }
 
 func TestConvertToIntegerMCMXCVIIIis1998(t *testing.T) {
 	rn, _ := NewRomanNumeral("MCMXCVIII")
 
-	assert.Equal(t, 1998, convertToInteger(rn))
+	assert.Equal(t, 1998, rn.ToInt())
 }
