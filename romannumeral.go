@@ -8,6 +8,7 @@ import (
 
 type RomanNumeral string
 
+// String returns the RomanNumeral as a string
 func (r RomanNumeral) String() string {
 	return string(r)
 }
@@ -16,6 +17,7 @@ func (r RomanNumeral) asSlice() []string {
 	return strings.Split(string(r), "")
 }
 
+// ToInt returns an int representation of the RomanNumeral
 func (r RomanNumeral) ToInt() int {
 	total := 0
 	var previous int
@@ -59,6 +61,8 @@ func getNumeralValue(n string) int {
 	}
 }
 
+// NewRomanNumeral creates an instance of a RomanNumeral from the given numeral
+// string. If the numeral contains invalid characters an error is returned
 func NewRomanNumeral(numeral string) (RomanNumeral, error) {
 	numeral = strings.ToUpper(strings.Join(strings.Fields(numeral), ""))
 

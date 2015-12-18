@@ -2,8 +2,23 @@
 
 First attempt at programming in Go
 
-Building a simple roman numeral converter.
+## PACKAGE DOCUMENTATION
 
-Usage
+package romannumeral
+    import "romannumeral"
 
-go run convert {roman numerals}
+
+### TYPES
+
+type RomanNumeral string
+
+func NewRomanNumeral(numeral string) (RomanNumeral, error)
+    NewRomanNumeral creates an instance of a RomanNumeral from the given
+        numeral string. If the numeral contains invalid characters an error is
+	    returned
+
+func (r RomanNumeral) String() string
+    String returns the RomanNumeral as a string
+
+func (r RomanNumeral) ToInt() int
+    ToInt returns an int representation of the RomanNumeral
